@@ -7,18 +7,23 @@ node {
         checkout scm;
     }
     stage ('Compile'){
-        withMaven(jdk: "jdk11", maven: "maven3"){
+        withMaven(jdk: 'jdk11', maven:'maven3'){
             sh 'mvn compile'
         }
     }
     stage ('Test'){
-        withMaven(jdk: "jdk11", maven: "maven3"){
+        withMaven(jdk: 'jdk11', maven:'maven3'){
             sh 'mvn test'
         }
     }
     stage ('Package'){
-        withMaven(jdk: "jdk11", maven: "maven3"){
+        withMaven(jdk: 'jdk11', maven:'maven3'){
             sh 'mvn package'
+        }
+    }
+    stage ('Artifact'){
+        withMaven(jdk: 'jdk11', maven:'maven3'){
+            sh 'mvn install'
         }
     }
 }
