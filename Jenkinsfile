@@ -1,17 +1,22 @@
 node {
     stage ('Clean WS'){
-        sh 'echo "Cleaning Woekspace"'
+        sh 'echo "Cleaning Workspace"'
         cleanWs();
     }
     stage ("Declarative Checkout"){
         checkout scm;
     }
-    stage ("Compile"){
+    stage ('Compile'){
         withMaven(jdk: "jdk11", maven: "maven3"){
             sh 'mvn compile'
         }
     }
-    stage ("Test"){
+    stage ('Test'){
+        withMaven(jdk: "jdk11", maven: "maven3"){
+            sh 'mvn test'
+        }
+    }
+    stage ('Package'){
         withMaven(jdk: "jdk11", maven: "maven3"){
             sh 'mvn package'
         }
