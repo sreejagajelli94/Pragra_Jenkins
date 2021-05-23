@@ -9,7 +9,6 @@ node {
     stage ("Compile"){
         withMaven(jdk: "jdk11", maven: "maven3"){
             sh 'mvn compile'
-            sh 'echo "successful"'
         }
     }
     stage ("Test"){
